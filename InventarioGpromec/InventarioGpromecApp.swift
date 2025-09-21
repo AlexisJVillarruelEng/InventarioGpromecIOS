@@ -11,7 +11,9 @@ import SwiftUI
 struct InventarioGpromecApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                LoginView()
+            }
         }
     }
 }

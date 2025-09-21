@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D959704D2E7DA56100AA88D5 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = D959704C2E7DA56100AA88D5 /* Auth */; };
+		D959704F2E7DA56100AA88D5 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = D959704E2E7DA56100AA88D5 /* Functions */; };
+		D95970512E7DA56100AA88D5 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = D95970502E7DA56100AA88D5 /* PostgREST */; };
+		D95970532E7DA56100AA88D5 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = D95970522E7DA56100AA88D5 /* Realtime */; };
+		D95970552E7DA56100AA88D5 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = D95970542E7DA56100AA88D5 /* Storage */; };
+		D95970572E7DA56100AA88D5 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = D95970562E7DA56100AA88D5 /* Supabase */; };
+		D95970762E7DB79A00AA88D5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D95970752E7DB79A00AA88D5 /* Lottie */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D91DE59A2E7736FE0096DA2E /* InventarioGpromec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InventarioGpromec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +33,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95970512E7DA56100AA88D5 /* PostgREST in Frameworks */,
+				D95970762E7DB79A00AA88D5 /* Lottie in Frameworks */,
+				D959704F2E7DA56100AA88D5 /* Functions in Frameworks */,
+				D95970572E7DA56100AA88D5 /* Supabase in Frameworks */,
+				D959704D2E7DA56100AA88D5 /* Auth in Frameworks */,
+				D95970552E7DA56100AA88D5 /* Storage in Frameworks */,
+				D95970532E7DA56100AA88D5 /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +82,13 @@
 			);
 			name = InventarioGpromec;
 			packageProductDependencies = (
+				D959704C2E7DA56100AA88D5 /* Auth */,
+				D959704E2E7DA56100AA88D5 /* Functions */,
+				D95970502E7DA56100AA88D5 /* PostgREST */,
+				D95970522E7DA56100AA88D5 /* Realtime */,
+				D95970542E7DA56100AA88D5 /* Storage */,
+				D95970562E7DA56100AA88D5 /* Supabase */,
+				D95970752E7DB79A00AA88D5 /* Lottie */,
 			);
 			productName = InventarioGpromec;
 			productReference = D91DE59A2E7736FE0096DA2E /* InventarioGpromec.app */;
@@ -94,6 +118,10 @@
 			);
 			mainGroup = D91DE5912E7736FE0096DA2E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				D95970742E7DB79A00AA88D5 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D91DE59B2E7736FE0096DA2E /* Products */;
 			projectDirPath = "";
@@ -324,6 +352,63 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+		D95970742E7DB79A00AA88D5 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D959704C2E7DA56100AA88D5 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		D959704E2E7DA56100AA88D5 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		D95970502E7DA56100AA88D5 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		D95970522E7DA56100AA88D5 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		D95970542E7DA56100AA88D5 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		D95970562E7DA56100AA88D5 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D959704B2E7DA56100AA88D5 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		D95970752E7DB79A00AA88D5 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D95970742E7DB79A00AA88D5 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D91DE5922E7736FE0096DA2E /* Project object */;
 }
