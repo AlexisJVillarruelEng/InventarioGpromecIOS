@@ -15,11 +15,13 @@ struct GridItems: View {
         
         LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 180), spacing: 5), count: 2), spacing: 20) {
             ForEach(itemsvm.itemscards) { item in
-                CardItemView(item: item,
-                    onImprimirqr: { id in
+                NavigationLink(value: item.id) {
+                    CardItemView(item: item,
+                                 onImprimirqr: { id in
                         onImprimirqr(id)
                     }
-                )
+                    )
+                }
             }
         }.padding(.vertical)
         

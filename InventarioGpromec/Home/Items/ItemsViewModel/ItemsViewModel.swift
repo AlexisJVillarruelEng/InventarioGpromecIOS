@@ -11,6 +11,7 @@ final class ItemsViewModel : ObservableObject {
     
     @Published var busqueda: String = ""
     @Published var itemscards: [ItemsModelResponse] = []
+    @Published var itemIDDetails: ItemsDetailResponse? = nil
     
     private let itemsservice = ItemsService()
     
@@ -24,6 +25,19 @@ final class ItemsViewModel : ObservableObject {
             let ns = error as NSError
             print("❌ Error al obtener los items: \(ns.domain) \(ns.code) \(ns.localizedDescription)")
             print("UserInfo: \(ns.userInfo)")
+        }
+    }
+    
+    func getitemsID(_ id: Int) async {
+        do {
+            let itemIDResponse = try await itemsservice.getItemDetail(id: id)
+            itemIDDetails = itemIDResponse
+            print("viewmodel cargando detalle id \(itemIDResponse.id)")
+        }catch{
+            let ns = error as NSError
+            print("❌ Error al obtener los items: \(ns.domain) \(ns.code) \(ns.localizedDescription)")
+            print("UserInfo: \(ns.userInfo)")
+            
         }
     }
     

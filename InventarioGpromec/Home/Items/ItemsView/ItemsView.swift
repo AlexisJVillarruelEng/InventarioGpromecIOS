@@ -45,6 +45,13 @@ struct ItemsView: View {
                     print("cargando items...")
                     await itemsvm.getItems()
                 }
+                .navigationDestination(for: Int.self){id in
+                    ItemsViewDetail(iditemseleccionado : id,
+                    onImprimirqr: { id in
+                        onImprimirqr(id)
+                    }
+                    )
+                }
 //
 //                // 2) Reconsultar cuando cambie la búsqueda (con debounce ligero)
 //                .task(id: itemsvm.busqueda) {
