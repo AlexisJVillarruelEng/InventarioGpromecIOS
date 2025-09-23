@@ -30,8 +30,13 @@ struct LoginView: View {
             
         }
         .fullScreenCover(isPresented: $estalogueado){
-            HomeMenuView()
+            HomeMenuView(
+                onlogout: {
+                    estalogueado = false
+                }
+            )
                 .interactiveDismissDisabled(true) //sin gesto
+                .environmentObject(login)
         }
 //        .alert("AVISO", isPresented: $login.showalerta){
 //            Button("OK", role: .cancel){

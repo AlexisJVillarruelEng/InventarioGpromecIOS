@@ -9,11 +9,14 @@ import Foundation
 
 @MainActor
 final class LoginviewModel: ObservableObject {
+    
     @Published var username: String = ""
     @Published var password: String = ""
     
     @Published var showalerta = false
     @Published var mensajealerta: String = ""
+    
+    @Published var usertoolbar: PerfilToolbarData?
     
     private let loginservice = LoginService()
     
@@ -31,6 +34,29 @@ final class LoginviewModel: ObservableObject {
                 showalerta = true
                 return false
             }
-        
+    }
+    
+    func logout() async -> Bool {
+        do{
+            try await loginservice.logout()
+            username = ""
+            password = ""
+            usertoolbar = nil
+            return true
+        }catch {
+            let nsError = error as NSError
+            mensajealerta = nsError.localizedDescription
+            return false
+        }
+    }
+    
+    func getusertoolbar() async {
+        print("usando vmlogin get user rol")
+        do {
+            usertoolbar = try await loginservice.getusertoolbar()
+        }catch {
+            let nsError = error as NSError
+            mensajealerta = nsError.localizedDescription
+        }
     }
 }
