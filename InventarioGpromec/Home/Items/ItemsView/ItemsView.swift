@@ -44,6 +44,18 @@ struct ItemsView: View {
                 .task {
                     print("cargando items...")
                     await itemsvm.getItems()
+                }.onChange(of: itemsvm.busqueda) { _, newValue in
+                    let snapshot = newValue  // capturamos el valor en el momento del cambio
+
+                    Task {
+                        // espera 3s; si el usuario sigue escribiendo, este snapshot ya no coincidirá
+                        try? await Task.sleep(nanoseconds: 300_000_000)
+                        // si cambió el texto durante la espera, no ejecutes nada
+                        guard snapshot == itemsvm.busqueda else { return }
+
+                        // aquí llamas tu VM (que ya maneja vacío => getItems(), texto => buscar)
+                        await itemsvm.buscarItems()
+                    }
                 }
                 .navigationDestination(for: Int.self){id in
                     ItemsViewDetail(iditemseleccionado : id,

@@ -50,5 +50,26 @@ final class ItemsService {
         return result
     }
     
+    func buscaritems(nombre: String, estado: String) async throws -> [ItemsModelResponse] {
+        let q = nombre.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let result: [ItemsModelResponse] = try await client
+            .from("items")
+            .select("""
+                id,
+                nombre,
+                descripcion,
+                foto_url,
+                estado,
+                motivo_no_retorno,
+                ubicacion_actual:ubicacion_actual(id,nombre,tipo)
+            """)
+            .or("nombre.ilike.%\(q)%,estado.ilike.%\(q)%")   // OR simple
+            .execute()
+            .value
+
+        print("service buscando items (OR): \(result.count)")
+        return result
+    }
     
 }

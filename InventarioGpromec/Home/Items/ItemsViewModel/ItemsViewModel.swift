@@ -40,5 +40,19 @@ final class ItemsViewModel : ObservableObject {
             
         }
     }
+    func buscarItems() async{
+        let q = busqueda.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !q.isEmpty else {
+                await getItems()                
+                return
+            }
+            do {
+                let resultados = try await itemsservice.buscaritems(nombre: busqueda, estado: busqueda)
+                itemscards = resultados
+                print("buscando '\(q)' => \(resultados.count)")
+            } catch {
+                print("❌ buscaritems:", error.localizedDescription)
+            }
+    }
     
 }
