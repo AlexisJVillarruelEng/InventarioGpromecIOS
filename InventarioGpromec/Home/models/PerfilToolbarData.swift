@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct PerfilToolbarData: Codable {
+    let id: UUID
+    var usuario: String
+    var rol: String
+    var foto_url: String?
+}

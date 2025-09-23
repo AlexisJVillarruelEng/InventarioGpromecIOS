@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct GridItems: View {
+    @EnvironmentObject var itemsvm: ItemsViewModel
+    var onImprimirqr: (Int) -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 180), spacing: 5), count: 2), spacing: 20) {
+            ForEach(itemsvm.itemscards) { item in
+                CardItemView(item: item,
+                    onImprimirqr: { id in
+                        onImprimirqr(id)
+                    }
+                )
+            }
+        }.padding(.vertical)
+        
+        
     }
 }
 
 #Preview {
-    GridItems()
+    GridItems(onImprimirqr: {_ in }).environmentObject(ItemsViewModel())
 }
