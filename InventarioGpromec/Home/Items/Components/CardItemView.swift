@@ -26,14 +26,17 @@ struct CardItemView: View {
         VStack{
             ZStack(alignment: .top) {
                 AsyncImage(url: URL(string: item.foto_url)) {
-                    image in image.resizable().scaledToFit().padding(.horizontal, 4).padding(.vertical, 10)
+                    image in image.resizable()
+                        .scaledToFill()
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 20)
+                        .padding(.top, 10)
+                        .frame( width: 160, height: 170)
+                        .clipped()
                 }placeholder: {
-                    ProgressView()
-                }
-                .frame( width: 160)
-                .clipped()
+                    ProgressView().frame( width: 160, height: 150)
+               }
                 .cornerRadius(40)
-                
                 HStack {
                     Button(action: {
                         //detalle a Imprimir
@@ -46,6 +49,8 @@ struct CardItemView: View {
                     Spacer()
                     Text(item.estado).frame( height: 10, alignment: .center).foregroundColor(.white).padding().background(Capsule().fill(estadoColor))
                 }.padding(.horizontal, 8).zIndex(1).padding(.top, 8)
+                
+                
                 
                 
             }
