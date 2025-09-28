@@ -3,8 +3,9 @@ import SwiftUI
 struct HomeMenuView: View {
     @EnvironmentObject var login: LoginviewModel
     @StateObject var Itemsvm = ItemsViewModel()
-    @State var idItemselec: Int? = nil
-    
+    @StateObject var Salidasvm = SalidasViewModel()
+    @State var idItemselec: ItemID? = nil
+    struct ItemID: Identifiable, Hashable { let id: Int }
     var onlogout: () -> Void
     //NAvegacion Tabs
     enum Tabs: Hashable {case items, entradas, salidas, trabajadores, historial}
@@ -13,33 +14,52 @@ struct HomeMenuView: View {
     var body: some View {
         
         TabView(selection: $selectedTab){
-            Tab("Items",systemImage: "list.clipboard", value: Tabs.items ){
-                NavigationStack{
-                    ItemsView(
-                        onImprimirqr: {
-                            id in idItemselec = id
-                        }
-                    ).toolbar {
-                        Toolbar(
-                            usuario: login.usertoolbar?.usuario,
-                            rol: login.usertoolbar?.rol,
-                            foto_url: login.usertoolbar?.foto_url,
-                            onlogout: {
-                                Task{
-                                    if await login.logout(){
-                                        onlogout()
-                                    }
+            Tab("Items", systemImage: "list.clipboard", value: Tabs.items) {
+                NavigationStack {
+                    ItemsView(onImprimirqr: { id in
+                        idItemselec = ItemID(id: id)
+                    })
+                    .sheet(item: $idItemselec) { sel in
+                        ImprimirQrView(itemID: String(sel.id))
+                    }
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbarBackground(.visible, for: .navigationBar)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Topbarview(
+                                usuario: login.usertoolbar?.usuario,
+                                rol:     login.usertoolbar?.rol,
+                                foto_url: login.usertoolbar?.foto_url,
+                                onlogout: {
+                                    Task { if await login.logout() { onlogout() } }
                                 }
-                            }
-                        )
-                    }.navigationDestination(item: $idItemselec){ id in
-                            ImprimirQrView(itemID: String(id))
+                            )
+                            .frame(maxWidth: .infinity, minHeight: 10)
                         }
+                    }
                 }
             }
-            Tab("Salidas", systemImage: "arrow.up.square", value: Tabs.salidas){
-                NavigationStack{
-                    //pantalla de salidas
+            Tab("Salidas", systemImage: "arrow.up.square", value: Tabs.salidas) {
+                NavigationStack {
+                    
+                    SalidasView(
+                        idusuario: login.usertoolbar?.id 
+                    )
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbarBackground(.visible, for: .navigationBar)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Topbarview(
+                                usuario: login.usertoolbar?.usuario,
+                                rol:     login.usertoolbar?.rol,
+                                foto_url: login.usertoolbar?.foto_url,
+                                onlogout: {
+                                    Task { if await login.logout() { onlogout() } }
+                                }
+                            )
+                            .frame(maxWidth: .infinity, minHeight: 10)
+                        }
+                    }
                 }
             }
             Tab("Entradas",systemImage: "arrow.down.square", value: Tabs.entradas){
@@ -59,6 +79,7 @@ struct HomeMenuView: View {
             }
         }
         .environmentObject(Itemsvm)
+        .environmentObject(Salidasvm)
         .task {
             if login.usertoolbar == nil{
                 await login.getusertoolbar()

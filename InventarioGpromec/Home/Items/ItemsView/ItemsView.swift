@@ -24,6 +24,7 @@ struct ItemsView: View {
 
                 // Barra “liquid glass” fija arriba
                 .safeAreaInset(edge: .top) {
+                    
                     HStack(spacing: 8) {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.secondary)
@@ -39,7 +40,7 @@ struct ItemsView: View {
                     .overlay(Capsule().stroke(.black.opacity(0.25), lineWidth: 1))
                     .shadow(radius: 2)
                     .padding(.horizontal, 16)
-                    .padding(.top, 8)
+                    .padding(.top, 16)
                 }// 1) Cargar una sola vez al entrar
                 .task {
                     print("cargando items...")
@@ -64,18 +65,6 @@ struct ItemsView: View {
                     }
                     )
                 }
-//
-//                // 2) Reconsultar cuando cambie la búsqueda (con debounce ligero)
-//                .task(id: itemsvm.busqueda) {
-//                    // opcional: pequeño delay para no pegar al escribir
-//                    try? await Task.sleep(nanoseconds: 300_000_000) // 300ms
-//                    await itemsvm.search()
-//                }
-//
-//                // 3) Pull-to-refresh
-//                .refreshable {
-//                    await itemsvm.load(force: true)
-//                }
         }
     }
 

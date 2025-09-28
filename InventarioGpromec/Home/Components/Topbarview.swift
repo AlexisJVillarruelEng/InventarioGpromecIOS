@@ -1,13 +1,8 @@
-//
-//  Toolbar.swift
-//  InventarioGpromec
-//
-//  Created by Alexis Villarruel on 21/09/25.
-//
+
 
 import SwiftUI
 
-struct Toolbar: View {
+struct Topbarview: View {
     var usuario: String?
     var rol: String?
     var foto_url: String?
@@ -15,7 +10,7 @@ struct Toolbar: View {
     //entra envirioment de loginviewmodel
     
     var body: some View {
-        HStack(alignment: .center,){
+        HStack(alignment: .center){
             
             Button(action:{
                 onlogout()
@@ -43,5 +38,5 @@ struct Toolbar: View {
 }
 
 #Preview {
-    Toolbar(onlogout: {})
+    Topbarview(onlogout: {})
 }
