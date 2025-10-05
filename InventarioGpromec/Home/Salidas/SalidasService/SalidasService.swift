@@ -47,11 +47,12 @@ final class SalidasService {
         return result
     }
     
-    func insertSalida(salida: TallerObrasInsert) async throws -> TallerObrasInsert {
+    func insertSalida(salida: TallerObrasInsert) async throws -> TallerObrasInsert { // Movimientos registro
         let result: TallerObrasInsert = try await client
                 .from("movimientos")
                 .insert(salida)
                 .select()   // 👈 para que retorne los datos insertados
+                .single()
                 .execute()
                 .value
         print("Añadiendo fila insert service.... \(String(describing: result.nota))")
@@ -59,10 +60,10 @@ final class SalidasService {
         return result
             
     }
-    //para devolver si actualiza nota
-//    func actualizar_item_noRetorno(nota: String, iditem: Int)async throws -> UpdateNotaItem  {
-//        let result : UpdateNotaItem = try await client.from( "items").update(["nota": nota]).eq("id",value: iditem).select().execute().value
-//        print("Actualizando nota de item service .... \(String(describing: result.nota)) e id item: \(String(describing: iditem))")
-//        return result
-//    }
+    
+    func actualizarOrigenItem(idItem: Int, id_destino: Int) async throws {
+        let _: Void = try await client
+            .from("items").update(["ubicacion_actual": id_destino]).eq("id", value: idItem).execute().value
+    }
+    
 }

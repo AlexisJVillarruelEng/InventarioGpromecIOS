@@ -71,16 +71,32 @@ final class SalidasViewModel: ObservableObject {
         }
     }
     
-    func actualizarTallerObra(objinsertar: TallerObrasInsert) async {
-        do{
-            let result = try await self.salidaService.insertSalida(salida: objinsertar)
-            print("insertando viewmodel..... respuesta: \(String(describing: result))")
-            
-        }catch{
+    func actualizarTallerObra(objinsertar: TallerObrasInsert) async -> Bool {
+        // Paso 1: Insert
+        do {
+            let result = try await salidaService.insertSalida(salida: objinsertar)
+            print("✅ Insertado en movimientos: \(result)")
+        } catch {
             let ns = error as NSError
-            print("❌ Error al insertar movimientos \(ns.domain) \(ns.code) \(ns.localizedDescription)")
+            print("❌ Error en INSERT movimientos")
+            print("Domain: \(ns.domain) Code: \(ns.code)")
+            print("Description: \(ns.localizedDescription)")
             print("UserInfo: \(ns.userInfo)")
+            return false   // ya no seguimos al update
         }
-        
+
+        // Paso 2: Update
+        do {
+            try await salidaService.actualizarOrigenItem(idItem: objinsertar.item_id, id_destino: objinsertar.ubicacion_destino)
+            print("✅ Ubicación del item actualizada")
+            return true
+        } catch {
+            let ns = error as NSError
+            print("❌ Error en UPDATE ubicacion_actual")
+            print("Domain: \(ns.domain) Code: \(ns.code)")
+            print("Description: \(ns.localizedDescription)")
+            print("UserInfo: \(ns.userInfo)")
+            return false
+        }
     }
 }

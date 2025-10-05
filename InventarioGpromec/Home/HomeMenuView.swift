@@ -4,6 +4,8 @@ struct HomeMenuView: View {
     @EnvironmentObject var login: LoginviewModel
     @StateObject var Itemsvm = ItemsViewModel()
     @StateObject var Salidasvm = SalidasViewModel()
+    @StateObject var Entradasvm = EntradasViewModel()
+    
     @State var idItemselec: ItemID? = nil
     struct ItemID: Identifiable, Hashable { let id: Int }
     var onlogout: () -> Void
@@ -63,8 +65,25 @@ struct HomeMenuView: View {
                 }
             }
             Tab("Entradas",systemImage: "arrow.down.square", value: Tabs.entradas){
-                NavigationStack{
-                    
+                NavigationStack {
+                    EntradasView(
+                        idusuario: login.usertoolbar?.id
+                    )
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbarBackground(.visible, for: .navigationBar)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Topbarview(
+                                usuario: login.usertoolbar?.usuario,
+                                rol:     login.usertoolbar?.rol,
+                                foto_url: login.usertoolbar?.foto_url,
+                                onlogout: {
+                                    Task { if await login.logout() { onlogout() } }
+                                }
+                            )
+                            .frame(maxWidth: .infinity, minHeight: 10)
+                        }
+                    }
                 }
             }
             Tab("Trabajadores",systemImage: "person.crop.square", value: Tabs.trabajadores){
@@ -80,6 +99,7 @@ struct HomeMenuView: View {
         }
         .environmentObject(Itemsvm)
         .environmentObject(Salidasvm)
+        .environmentObject(Entradasvm)
         .task {
             if login.usertoolbar == nil{
                 await login.getusertoolbar()

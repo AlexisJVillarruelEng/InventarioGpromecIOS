@@ -70,10 +70,11 @@ struct SalidasView: View {
                     Spacer()
                     
                     NavigationLink {
-                        RegistrarSalidaView(userID: idusuario ?? UUID())
-                            .ignoresSafeArea()
-                            .toolbar(.hidden, for: .tabBar)   // 👈 oculta los tabs
-                            .navigationBarBackButtonHidden(false) // botón "back"
+                        RegistrarSalidaView(userID: idusuario ?? UUID(),
+                                            textoAlert: "Salida")
+                        .ignoresSafeArea()
+                        .toolbar(.hidden, for: .tabBar)   // 👈 oculta los tabs
+                        .navigationBarBackButtonHidden(false) // botón "back"
                     } label: {
                         Image(systemName: "qrcode.viewfinder")
                             .font(.system(size: 28, weight: .bold))
@@ -123,8 +124,7 @@ struct SalidasView: View {
                 .init(id: 5, trabajadores: .init(id: 15, foto_url: "https://picsum.photos/seed/user5/200")),
                 .init(id: 6, trabajadores: .init(id: 16, foto_url: "https://picsum.photos/seed/user6/200"))
             ]
-        )
-    ]
+        )    ]
 
     vm.obras = [
         .init(
@@ -149,7 +149,7 @@ struct SalidasView: View {
 
     return NavigationStack {
         SalidasView(idusuario: UUID())
-            .environmentObject(vm)
+            .environmentObject(vm).environmentObject(EntradasViewModel())
             .padding()
     }
 }
