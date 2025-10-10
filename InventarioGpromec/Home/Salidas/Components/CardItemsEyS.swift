@@ -30,7 +30,8 @@ struct CardItemsEyS: View {
         itemscards: .init(
             id: 101,
             nombre: "Taladro percutor XR-200",
-            foto_url: "https://picsum.photos/seed/101/200"
+            foto_url: "https://picsum.photos/seed/101/200",
+            estado: "activo"
         )
     )
 }

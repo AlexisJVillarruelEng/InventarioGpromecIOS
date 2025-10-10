@@ -55,15 +55,15 @@ struct burbujaconteo: View {
 #Preview {
     VStack(spacing: 20) {
         CardTrabajadores(itemtrab: [
-            .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/id/1005/200/200")),
-            .init(id: 2, trabajadores: .init(id: 12, foto_url: "https://picsum.photos/id/1011/200/200"))
+            .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/id/1005/200/200",nombre: "Juan", apellido: "Perez")),
+            .init(id: 2, trabajadores: .init(id: 12, foto_url: "https://picsum.photos/id/1011/200/200",nombre: "Juan", apellido: "Perez"))
         ])
 
         CardTrabajadores(itemtrab: [
-            .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/id/1005/200/200")),
-            .init(id: 2, trabajadores: .init(id: 12, foto_url: "https://picsum.photos/id/1011/200/200")),
-            .init(id: 3, trabajadores: .init(id: 13, foto_url: "https://picsum.photos/id/1012/200/200")),
-            .init(id: 4, trabajadores: .init(id: 14, foto_url: "https://picsum.photos/id/1015/200/200"))
+            .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/id/1005/200/200",nombre: "Juan", apellido: "Perez")),
+            .init(id: 2, trabajadores: .init(id: 12, foto_url: "https://picsum.photos/id/1011/200/200",nombre: "Juan", apellido: "Perez")),
+            .init(id: 3, trabajadores: .init(id: 13, foto_url: "https://picsum.photos/id/1012/200/200",nombre: "Juan", apellido: "Perez")),
+            .init(id: 4, trabajadores: .init(id: 14, foto_url: "https://picsum.photos/id/1015/200/200",nombre: "Juan", apellido: "Perez"))
         ])
     }
 }

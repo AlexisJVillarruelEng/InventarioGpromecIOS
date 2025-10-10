@@ -19,6 +19,7 @@ struct TallerObrasCardResponse:Identifiable, Decodable {
         let id: Int
         let nombre: String
         let foto_url: String
+        let estado: String
     }
     
     struct asignacion_trabajadores: Identifiable,Decodable {
@@ -28,6 +29,8 @@ struct TallerObrasCardResponse:Identifiable, Decodable {
         struct Trabajadores: Identifiable,Decodable {
             let id: Int
             let foto_url: String
+            let nombre: String
+            let apellido: String
         }
     }
 }

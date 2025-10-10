@@ -39,8 +39,12 @@ struct EntradasView: View {
                 HStack(alignment: .center) {
                     ScrollView {
                         ForEach(salidasvm.talleres) { item in
-                            TalleresObrasCard(item: item)
-                        }
+                            NavigationLink{
+                                DetailView(itemdetail: item, txthabboton: "Entrada", uid: idusuario!)
+                            } label : {
+                                TalleresObrasCard(item: item)
+                                }.buttonStyle(PlainButtonStyle())
+                            }
                     }
                     .scrollIndicators(.hidden) //listado de cards Talleres
                     
@@ -53,7 +57,11 @@ struct EntradasView: View {
                     
                     ScrollView {
                         ForEach(salidasvm.obras) { item in
-                            TalleresObrasCard(item: item)
+                            NavigationLink{
+                                DetailView(itemdetail: item, txthabboton: "Entrada", uid: idusuario!)
+                            } label : {
+                                TalleresObrasCard(item: item)
+                            }.buttonStyle(PlainButtonStyle())
                         }
                     }
                     .scrollIndicators(.hidden)

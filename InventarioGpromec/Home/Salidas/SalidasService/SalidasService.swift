@@ -18,13 +18,16 @@ final class SalidasService {
         items(
             id,
             nombre,
-            foto_url
+            foto_url,
+            estado
         ),
         asignacion_trabajadores(
             id,
             trabajadores(
                 id,
-                foto_url
+                foto_url,
+                nombre,
+                apellido
             )
         )
     """).eq("estado", value: true)
