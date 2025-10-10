@@ -53,4 +53,39 @@ final class EntradasViewModel: ObservableObject {
             return false
         }
     }
+    
+    func actualizarItemMovimientoPerdidoAveriado(objItemAct: insertarItemsPerdidoAveriadoModel) async -> Bool {
+        // 1 Insertar
+        do{
+            print("objeto a insertar : \(objItemAct)")
+            let result = try await entradasService.insertarPeridoAveriadoMovimientos(entradaAveriadoPerdido: objItemAct)
+            print("insertando en movimientos : \(result)")
+        }catch{
+            let ns = error as NSError
+            print("❌ Error en INSERT movimientos")
+            print("Domain: \(ns.domain) Code: \(ns.code)")
+            print("Description: \(ns.localizedDescription)")
+            print("UserInfo: \(ns.userInfo)")
+            return false   // ya no seguimos al update        }
+        }
+        // 2 update
+        do{
+            let actualizaItem = ActualizarItemModels(estado: objItemAct.estado,
+                                                     motivo_no_retorno: objItemAct.nota ?? "",
+                                                     ubicacion_actual: objItemAct.ubicacion_destino
+                                                     
+            )
+            
+            try await entradasService.actualizarItemAveriadoPerdidoItems(idItem: objItemAct.item_id, objetoactualizaritem: actualizaItem)
+            print("✅ Ubicación y Nota del item actualizada")
+            return true
+        }catch {
+            let ns = error as NSError
+            print("❌ Error en UPDATE item")
+            print("Domain: \(ns.domain) Code: \(ns.code)")
+            print("Description: \(ns.localizedDescription)")
+            print("UserInfo: \(ns.userInfo)")
+            return false
+        }
+    }
 }

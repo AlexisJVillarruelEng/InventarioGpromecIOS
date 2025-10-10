@@ -41,21 +41,29 @@ struct SalidasView: View {
                 HStack(alignment: .center) {
                     ScrollView {
                         ForEach(salidasvm.talleres) { item in
-                            TalleresObrasCard(item: item)
+                            NavigationLink{
+                                DetailView(itemdetail: item, txthabboton: "Salida", uid: idusuario!)
+                            } label : {
+                                TalleresObrasCard(item: item)
+                            }.buttonStyle(PlainButtonStyle())
                         }
                     }
                     .scrollIndicators(.hidden) //listado de cards Talleres
                     
                     Spacer()
                     
-                    Divider()
+                    Divider()		
                         .frame(width: 3)
                         .background(Color.black.opacity(0.2))
                         .padding(.vertical)
                     
                     ScrollView {
                         ForEach(salidasvm.obras) { item in
-                            TalleresObrasCard(item: item)
+                            NavigationLink {
+                                DetailView(itemdetail: item, txthabboton: "Salida", uid: idusuario!)
+                            } label: {
+                                TalleresObrasCard(item: item)
+                            }.buttonStyle(PlainButtonStyle())
                         }
                     }
                     .scrollIndicators(.hidden)
@@ -105,24 +113,24 @@ struct SalidasView: View {
             tipo: "taller",
             estado: true,
             items: [
-                .init(id: 101, nombre: "Taladro XR-200",  foto_url: "https://picsum.photos/seed/taladro/200"),
-                .init(id: 102, nombre: "Martillo Pro",    foto_url: "https://picsum.photos/seed/martillo/200"),
-                .init(id: 103, nombre: "Sierra Circular", foto_url: "https://picsum.photos/seed/sierra/200"),
-                .init(id: 104, nombre: "Compresora",      foto_url: "https://picsum.photos/seed/compresora/200"),
-                .init(id: 105, nombre: "Escalera",        foto_url: "https://picsum.photos/seed/escalera/200"),
-                .init(id: 106, nombre: "Generador",       foto_url: "https://picsum.photos/seed/generador/200"),
-                .init(id: 107, nombre: "Taladro Chico",   foto_url: "https://picsum.photos/seed/taladro2/200"),
-                .init(id: 108, nombre: "Pulidora",        foto_url: "https://picsum.photos/seed/pulidora/200"),
-                .init(id: 109, nombre: "Llave Inglesa",   foto_url: "https://picsum.photos/seed/llave/200"),
-                .init(id: 110, nombre: "Soldadora",       foto_url: "https://picsum.photos/seed/soldadora/200")
+                .init(id: 101, nombre: "Taladro XR-200",  foto_url: "https://picsum.photos/seed/taladro/200", estado: "activo"),
+                .init(id: 102, nombre: "Martillo Pro",    foto_url: "https://picsum.photos/seed/martillo/200", estado: "activo"),
+                .init(id: 103, nombre: "Sierra Circular", foto_url: "https://picsum.photos/seed/sierra/200", estado: "activo"),
+                .init(id: 104, nombre: "Compresora",      foto_url: "https://picsum.photos/seed/compresora/200", estado: "activo"),
+                .init(id: 105, nombre: "Escalera",        foto_url: "https://picsum.photos/seed/escalera/200", estado: "activo"),
+                .init(id: 106, nombre: "Generador",       foto_url: "https://picsum.photos/seed/generador/200", estado: "activo"),
+                .init(id: 107, nombre: "Taladro Chico",   foto_url: "https://picsum.photos/seed/taladro2/200", estado: "activo"),
+                .init(id: 108, nombre: "Pulidora",        foto_url: "https://picsum.photos/seed/pulidora/200", estado: "activo"),
+                .init(id: 109, nombre: "Llave Inglesa",   foto_url: "https://picsum.photos/seed/llave/200", estado: "activo"),
+                .init(id: 110, nombre: "Soldadora",       foto_url: "https://picsum.photos/seed/soldadora/200", estado: "activo")
             ],
             asignacion_trabajadores: [
-                .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/seed/user1/200")),
-                .init(id: 2, trabajadores: .init(id: 12, foto_url: "https://picsum.photos/seed/user2/200")),
-                .init(id: 3, trabajadores: .init(id: 13, foto_url: "https://picsum.photos/seed/user3/200")),
-                .init(id: 4, trabajadores: .init(id: 14, foto_url: "https://picsum.photos/seed/user4/200")),
-                .init(id: 5, trabajadores: .init(id: 15, foto_url: "https://picsum.photos/seed/user5/200")),
-                .init(id: 6, trabajadores: .init(id: 16, foto_url: "https://picsum.photos/seed/user6/200"))
+                .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/seed/user1/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 2, trabajadores: .init(id: 12, foto_url: "https://picsum.photos/seed/user2/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 3, trabajadores: .init(id: 13, foto_url: "https://picsum.photos/seed/user3/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 4, trabajadores: .init(id: 14, foto_url: "https://picsum.photos/seed/user4/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 5, trabajadores: .init(id: 15, foto_url: "https://picsum.photos/seed/user5/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 6, trabajadores: .init(id: 16, foto_url: "https://picsum.photos/seed/user6/200",nombre: "Juan", apellido: "Perez"))
             ]
         )    ]
 
@@ -133,16 +141,16 @@ struct SalidasView: View {
             tipo: "obra",
             estado: true,
             items: [
-                .init(id: 201, nombre: "Andamio", foto_url: "https://picsum.photos/seed/andamio/200"),
-                .init(id: 202, nombre: "Casco",   foto_url: "https://picsum.photos/seed/casco/200"),
-                .init(id: 203, nombre: "Guantes", foto_url: "https://picsum.photos/seed/guantes/200"),
-                .init(id: 204, nombre: "Arnés",   foto_url: "https://picsum.photos/seed/arnes/200")
+                .init(id: 201, nombre: "Andamio", foto_url: "https://picsum.photos/seed/andamio/200", estado: "activo"),
+                .init(id: 202, nombre: "Casco",   foto_url: "https://picsum.photos/seed/casco/200", estado: "activo"),
+                .init(id: 203, nombre: "Guantes", foto_url: "https://picsum.photos/seed/guantes/200", estado: "activo"),
+                .init(id: 204, nombre: "Arnés",   foto_url: "https://picsum.photos/seed/arnes/200", estado: "activo")
             ],
             asignacion_trabajadores: [
-                .init(id: 7, trabajadores: .init(id: 17, foto_url: "https://picsum.photos/seed/user7/200")),
-                .init(id: 8, trabajadores: .init(id: 18, foto_url: "https://picsum.photos/seed/user8/200")),
-                .init(id: 9, trabajadores: .init(id: 19, foto_url: "https://picsum.photos/seed/user9/200")),
-                .init(id: 10, trabajadores: .init(id: 20, foto_url: "https://picsum.photos/seed/user10/200"))
+                .init(id: 7, trabajadores: .init(id: 17, foto_url: "https://picsum.photos/seed/user7/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 8, trabajadores: .init(id: 18, foto_url: "https://picsum.photos/seed/user8/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 9, trabajadores: .init(id: 19, foto_url: "https://picsum.photos/seed/user9/200",nombre: "Juan", apellido: "Perez")),
+                .init(id: 10, trabajadores: .init(id: 20, foto_url: "https://picsum.photos/seed/user10/200",nombre: "Juan", apellido: "Perez"))
             ]
         )
     ]

@@ -108,7 +108,7 @@ struct RegistrarSalidaView: View {
                             ubicacion_destino: 1,     // 👈 fijo en 1
                             tipo: "entrada",
                             operador: userID,
-                            estado: "abierto",
+                            estado: "cerrado",
                             nota: nota.isEmpty ? nil : nota
                         )
                         

@@ -34,4 +34,16 @@ final class EntradasService {
             .from("items").update(["ubicacion_actual": 1]).eq("id", value: idItem).execute().value
     }
     
+    func insertarPeridoAveriadoMovimientos(entradaAveriadoPerdido: insertarItemsPerdidoAveriadoModel) async throws -> insertarItemsPerdidoAveriadoModel {  //movimientos
+        let result : insertarItemsPerdidoAveriadoModel = try await client.from("movimientos").insert(entradaAveriadoPerdido).select().single().execute().value
+
+        print("Añadiendo fila insert entrada Service averido perdido.... \(String(describing: result))")
+
+        return result
+    }
+    
+    func actualizarItemAveriadoPerdidoItems(idItem: Int,objetoactualizaritem: ActualizarItemModels) async throws { //items
+        let _ : Void = try await client.from("items").update(objetoactualizaritem).eq("id", value: idItem).execute().value
+    }
+    
 }

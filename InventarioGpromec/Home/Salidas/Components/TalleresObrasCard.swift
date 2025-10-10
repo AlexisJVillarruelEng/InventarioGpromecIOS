@@ -35,12 +35,12 @@ struct TalleresObrasCard: View {
             tipo: "taller",
             estado: true,
             items: [
-                .init(id: 101, nombre: "Taladro XR-200",  foto_url: "https://picsum.photos/seed/taladro/200"),
-                .init(id: 102, nombre: "Martillo Pro",    foto_url: "https://picsum.photos/seed/martillo/200"),
-                .init(id: 103, nombre: "Sierra Circular", foto_url: "https://picsum.photos/seed/sierra/200"),
+                .init(id: 101, nombre: "Taladro XR-200",  foto_url: "https://picsum.photos/seed/taladro/200", estado: "activo"),
+                .init(id: 102, nombre: "Martillo Pro",    foto_url: "https://picsum.photos/seed/martillo/200", estado: "activo"),
+                .init(id: 103, nombre: "Sierra Circular", foto_url: "https://picsum.photos/seed/sierra/200", estado: "activo"),
             ],
             asignacion_trabajadores: [
-                .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/seed/user1/200"))
+                .init(id: 1, trabajadores: .init(id: 11, foto_url: "https://picsum.photos/seed/user1/200",nombre: "Juan", apellido: "Perez"))
             ]
         )
     )
