@@ -5,6 +5,7 @@ struct HomeMenuView: View {
     @StateObject var Itemsvm = ItemsViewModel()
     @StateObject var Salidasvm = SalidasViewModel()
     @StateObject var Entradasvm = EntradasViewModel()
+    @StateObject var Trabajadoresvm = TrabajadoresViewModel()
     
     @State var idItemselec: ItemID? = nil
     struct ItemID: Identifiable, Hashable { let id: Int }
@@ -45,7 +46,7 @@ struct HomeMenuView: View {
                 NavigationStack {
                     
                     SalidasView(
-                        idusuario: login.usertoolbar?.id 
+                        idusuario: login.usertoolbar?.id
                     )
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbarBackground(.visible, for: .navigationBar)
@@ -88,7 +89,22 @@ struct HomeMenuView: View {
             }
             Tab("Trabajadores",systemImage: "person.crop.square", value: Tabs.trabajadores){
                 NavigationStack{
-                    
+                    TrabajadoresView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbarBackground(.visible, for: .navigationBar)
+                        .toolbar {
+                            ToolbarItem(placement: .principal) {
+                                Topbarview(
+                                    usuario: login.usertoolbar?.usuario,
+                                    rol:     login.usertoolbar?.rol,
+                                    foto_url: login.usertoolbar?.foto_url,
+                                    onlogout: {
+                                        Task { if await login.logout() { onlogout() } }
+                                    }
+                                )
+                                .frame(maxWidth: .infinity, minHeight: 10)
+                            }
+                        }
                 }
             }
             Tab("Historial",systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90", value: Tabs.historial){
@@ -100,6 +116,7 @@ struct HomeMenuView: View {
         .environmentObject(Itemsvm)
         .environmentObject(Salidasvm)
         .environmentObject(Entradasvm)
+        .environmentObject(Trabajadoresvm)
         .task {
             if login.usertoolbar == nil{
                 await login.getusertoolbar()
