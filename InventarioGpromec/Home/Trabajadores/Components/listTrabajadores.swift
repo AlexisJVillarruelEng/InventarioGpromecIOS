@@ -13,7 +13,7 @@ struct listTrabajadores: View {
     var body: some View {
         
         HStack{
-            AsyncImage(url: URL(string: trabajadores.foto_url ?? "")) { image in image.resizable().scaledToFill().frame(width: 90, height: 90)
+            AsyncImage(url: URL(string: trabajadores.foto_url ?? "")) { image in image.resizable().scaledToFill().frame(width: 60, height: 60)
                     .clipShape(Circle())
             } placeholder: {
                 ProgressView()

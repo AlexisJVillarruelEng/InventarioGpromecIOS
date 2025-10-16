@@ -16,14 +16,30 @@
 		D95970762E7DB79A00AA88D5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D95970752E7DB79A00AA88D5 /* Lottie */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D9C1F0992EA0276400F911F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D91DE5922E7736FE0096DA2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D91DE5992E7736FE0096DA2E;
+			remoteInfo = InventarioGpromec;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		D91DE59A2E7736FE0096DA2E /* InventarioGpromec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InventarioGpromec.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9C1F0952EA0276400F911F6 /* InventarioGpromecTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InventarioGpromecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D91DE59C2E7736FE0096DA2E /* InventarioGpromec */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = InventarioGpromec;
+			sourceTree = "<group>";
+		};
+		D9C1F0962EA0276400F911F6 /* InventarioGpromecTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = InventarioGpromecTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -43,6 +59,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9C1F0922EA0276400F911F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -50,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				D91DE59C2E7736FE0096DA2E /* InventarioGpromec */,
+				D9C1F0962EA0276400F911F6 /* InventarioGpromecTests */,
 				D91DE59B2E7736FE0096DA2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				D91DE59A2E7736FE0096DA2E /* InventarioGpromec.app */,
+				D9C1F0952EA0276400F911F6 /* InventarioGpromecTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +119,29 @@
 			productReference = D91DE59A2E7736FE0096DA2E /* InventarioGpromec.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D9C1F0942EA0276400F911F6 /* InventarioGpromecTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9C1F09B2EA0276400F911F6 /* Build configuration list for PBXNativeTarget "InventarioGpromecTests" */;
+			buildPhases = (
+				D9C1F0912EA0276400F911F6 /* Sources */,
+				D9C1F0922EA0276400F911F6 /* Frameworks */,
+				D9C1F0932EA0276400F911F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9C1F09A2EA0276400F911F6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D9C1F0962EA0276400F911F6 /* InventarioGpromecTests */,
+			);
+			name = InventarioGpromecTests;
+			packageProductDependencies = (
+			);
+			productName = InventarioGpromecTests;
+			productReference = D9C1F0952EA0276400F911F6 /* InventarioGpromecTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,11 +149,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					D91DE5992E7736FE0096DA2E = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					D9C1F0942EA0276400F911F6 = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = D91DE5992E7736FE0096DA2E;
 					};
 				};
 			};
@@ -128,12 +180,20 @@
 			projectRoot = "";
 			targets = (
 				D91DE5992E7736FE0096DA2E /* InventarioGpromec */,
+				D9C1F0942EA0276400F911F6 /* InventarioGpromecTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D91DE5982E7736FE0096DA2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9C1F0932EA0276400F911F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -150,7 +210,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D9C1F0912EA0276400F911F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9C1F09A2EA0276400F911F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D91DE5992E7736FE0096DA2E /* InventarioGpromec */;
+			targetProxy = D9C1F0992EA0276400F911F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D91DE5A32E7736FF0096DA2E /* Debug */ = {
@@ -212,6 +287,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -269,6 +345,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -332,6 +409,50 @@
 			};
 			name = Release;
 		};
+		D9C1F09C2EA0276400F911F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2Z3X29FPT3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AlexisVillarruel.InventarioGpromecTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InventarioGpromec.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InventarioGpromec";
+			};
+			name = Debug;
+		};
+		D9C1F09D2EA0276400F911F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2Z3X29FPT3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AlexisVillarruel.InventarioGpromecTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InventarioGpromec.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InventarioGpromec";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -349,6 +470,15 @@
 			buildConfigurations = (
 				D91DE5A62E7736FF0096DA2E /* Debug */,
 				D91DE5A72E7736FF0096DA2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9C1F09B2EA0276400F911F6 /* Build configuration list for PBXNativeTarget "InventarioGpromecTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9C1F09C2EA0276400F911F6 /* Debug */,
+				D9C1F09D2EA0276400F911F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

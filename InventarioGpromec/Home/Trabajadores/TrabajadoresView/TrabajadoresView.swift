@@ -14,6 +14,12 @@ struct TrabajadoresView: View {
     @State var idtrabajadorSeleccionado : Int = 0
     @State private var idtalleres: Int? = nil
     @State private var idobras: Int? = nil
+    @State private var mostrarAlerta = false
+    
+    private var destinoSeleccionado: Int? {
+        isTaller ? idtalleres : idobras
+    }
+    
     var body: some View {
         
         VStack {
@@ -21,18 +27,35 @@ struct TrabajadoresView: View {
             
             List(trabajadoresvm.listaTrabajadores , id: \.id) { trabajador in
                 listTrabajadores(trabajadores: trabajador).onTapGesture {
+                    trabajadoresvm.esValidado = false // reset antes de asignar
                     idtrabajadorSeleccionado = trabajador.id
                     print("id Seleccionado  -> \(idtrabajadorSeleccionado)")
+                    Task{
+                        let esValido = await trabajadoresvm.validarAsignacion(idTrabajador: idtrabajadorSeleccionado)
+                        print("Respuesta de verificacion : \(esValido)")
+                    }
                 }
-            }.frame(height : 500)
-            
+            }.frame(height : 400)
+            Text("ID seleccionado: \(idtrabajadorSeleccionado)").frame(maxWidth: .infinity, alignment: .leading).padding().foregroundStyle(.secondary)
             PickerDestino(istaller: $isTaller,
                           tallerseleccionado: $idtalleres,
                           obraseleccionado: $idobras,
                           talleres: salidasvm.tallerespicker,
                           obras: salidasvm.obraspicker)
+            Button(action: {
+                Task{
+                   _ = await trabajadoresvm.AsignacionTrabajadores(idTrabajador: idtrabajadorSeleccionado, idDestino: destinoSeleccionado!)
+                    mostrarAlerta = true
+                }
+            }){
+                Text(trabajadoresvm.esValidado ? "Actualizar" : "Asignar").frame(width: 150, height: 50).background((destinoSeleccionado == nil) ? Color.gray : Color.blue).foregroundColor(.white).clipShape(.capsule)
+            }.disabled(destinoSeleccionado == nil )
         }.task {
             await trabajadoresvm.getTrabajadores()
+        }.alert("Trabajador actualizado o Asignado", isPresented: $mostrarAlerta){
+            Button("Ok", role: .cancel){}
+        } message: {
+            Text("actulizado o Asignado")
         }
     }
 }
