@@ -6,6 +6,7 @@ struct HomeMenuView: View {
     @StateObject var Salidasvm = SalidasViewModel()
     @StateObject var Entradasvm = EntradasViewModel()
     @StateObject var Trabajadoresvm = TrabajadoresViewModel()
+    @StateObject var Historialvm = HistorialViewModel()
     
     @State var idItemselec: ItemID? = nil
     struct ItemID: Identifiable, Hashable { let id: Int }
@@ -109,7 +110,22 @@ struct HomeMenuView: View {
             }
             Tab("Historial",systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90", value: Tabs.historial){
                 NavigationStack{
-                    
+                    HistorialView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbarBackground(.visible, for: .navigationBar)
+                        .toolbar {
+                            ToolbarItem(placement: .principal) {
+                                Topbarview(
+                                    usuario: login.usertoolbar?.usuario,
+                                    rol:     login.usertoolbar?.rol,
+                                    foto_url: login.usertoolbar?.foto_url,
+                                    onlogout: {
+                                        Task { if await login.logout() { onlogout() } }
+                                    }
+                                )
+                                .frame(maxWidth: .infinity, minHeight: 10)
+                            }
+                        }
                 }
             }
         }
@@ -117,6 +133,7 @@ struct HomeMenuView: View {
         .environmentObject(Salidasvm)
         .environmentObject(Entradasvm)
         .environmentObject(Trabajadoresvm)
+        .environmentObject(Historialvm)
         .task {
             if login.usertoolbar == nil{
                 await login.getusertoolbar()
