@@ -38,3 +38,5 @@ Prototipo de App IOS
 
 [Figma link G APP](https://www.figma.com/design/xck3BqtwjhPOH5nB3gXhFO/GpromecApp?node-id=1-3&t=hsoo39ElAD45vi6y-1)
 
+##Documentacion
+[Documentacion link G APP](https://deepwiki.com/AlexisJVillarruelEng/InventarioGpromecIOS/1-overview)
